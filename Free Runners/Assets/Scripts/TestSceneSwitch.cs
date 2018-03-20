@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class TestSceneSwitch : MonoBehaviour {
 
-    public Button button;
+    public Button settings;
     // Use this for initialization
     void Start () {
-        Button btn = button.GetComponent<Button>();
-        btn.onClick.AddListener(Settings);
+		//Button settings = settingsButton.GetComponent<Button> ();
+		settings.onClick.AddListener(Settings);
+		Debug.Log ("Hellodsdsdsd");
 	}
 	
 	// Update is called once per frame
@@ -19,7 +20,7 @@ public class TestSceneSwitch : MonoBehaviour {
 	}
 
     void Settings() {
-        SceneManager.LoadScene("Controls",LoadSceneMode.Additive);
+		Debug.Log ("Hello");
     }
 
 }
