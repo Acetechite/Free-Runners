@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - SceneManager
+  - Late
+  - Perfect
+  - Early
   layers:
   - Default
   - TransparentFX
