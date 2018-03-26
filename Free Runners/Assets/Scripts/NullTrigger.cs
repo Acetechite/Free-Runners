@@ -13,6 +13,13 @@ public class NullTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		col.gameObject.GetComponent<PlayerController> ().state = "null";
+        PlayerController player = col.gameObject.GetComponent<PlayerController>();
+        
+        if (!player.isJumping)
+        {
+            player.state = "late";
+            col.gameObject.GetComponent<PlayerController>().Jump();
+        }
+        
 	}
 }

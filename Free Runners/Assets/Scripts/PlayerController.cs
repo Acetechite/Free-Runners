@@ -13,17 +13,22 @@ public class PlayerController : MonoBehaviour {
 	public Sprite perfect;
 	public Sprite early;
 	public string state;
-	AudioClip earlySound;
+    public bool isJumping;
+    AudioClip earlySound;
 	AudioClip perfectSound;
 	AudioClip lateSound;
 	Sprite playerWalk;
 	Sprite playerMiss;
+    Sprite playerWin;
 	RuntimeAnimatorController playerWalkAnim;
 	RuntimeAnimatorController playerMissAnim;
+    RuntimeAnimatorController playerWinAnim;
+
 
 	// Use this for initialization
 	void Start () {
 		state = "null";
+        isJumping = false;
 
 		earlySound = (AudioClip)Resources.Load("sounds/EarlySound");
 		perfectSound = (AudioClip)Resources.Load("sounds/PerfectSound");
@@ -31,19 +36,22 @@ public class PlayerController : MonoBehaviour {
 
 		playerWalk = Resources.Load<Sprite> ("sprites/PlayerWalk");
 		playerMiss = Resources.Load<Sprite> ("sprites/PlayerMiss");
+        playerWin = Resources.Load<Sprite>("sprites/PlayerWin");
 
 		playerWalkAnim = Resources.Load<RuntimeAnimatorController> ("sprites/PlayerWalkAnim");
 		playerMissAnim = Resources.Load<RuntimeAnimatorController> ("sprites/PlayerMissAnim");
-	}
+        playerWinAnim = Resources.Load<RuntimeAnimatorController>("sprites/PlayerWinAnim");
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
+            isJumping = true;
 			Jump ();
 		}
 	}
 
-	void Jump(){
+	public void Jump(){
 		switch (state) {
 		case "null":
 			break;
@@ -55,6 +63,9 @@ public class PlayerController : MonoBehaviour {
 			break;
 		case "perfect":
 			audioSrc.PlayOneShot (perfectSound);
+                playerSprite.sprite = playerWin;
+                playerAnimator.runtimeAnimatorController = playerWinAnim;
+                StartCoroutine(JumpMove());
 			spriteRen.sprite = perfect;
 			break;
 		case "early":
@@ -69,8 +80,14 @@ public class PlayerController : MonoBehaviour {
 
 	IEnumerator ShowState(){
 		yield return new WaitForSeconds (0.8f);
+        isJumping = false;
 		playerSprite.sprite = playerWalk;
 		playerAnimator.runtimeAnimatorController = playerWalkAnim;
 		spriteRen.sprite = null;
 	}
+    IEnumerator JumpMove() {
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.07f, transform.position.z);
+        yield return new WaitForSeconds(0.8f);
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.07f, transform.position.z);
+    }
 }
