@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LateTrigger : MonoBehaviour {
-
+public class PerfectTrigger : MonoBehaviour {
+	
 	// Use this for initialization
 	void Start () {
 	}
@@ -13,6 +13,6 @@ public class LateTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		col.gameObject.GetComponent<PlayerController> ().state = "late";
+		col.gameObject.GetComponent<PlayerController> ().state = "perfect";
 	}
 }

@@ -82,6 +82,7 @@ public class ArrowController : MonoBehaviour {
         isWaiting = false;
         sceneCtrl.SceneSwitch(buttonArray[0].name);
     }
+
     IEnumerator Flicker()
     {
         while(true)
