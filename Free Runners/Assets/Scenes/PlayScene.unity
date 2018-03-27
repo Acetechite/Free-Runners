@@ -410,6 +410,7 @@ MonoBehaviour:
   nullObj: {fileID: 779855893}
   hurdle: {fileID: 1830542244188878, guid: bd50f213e3cd2964890ea9b6b37cf3de, type: 2}
   pylon: {fileID: 1508510391937924, guid: 86b05c9831d6efc499c2c60d8febaf99, type: 2}
+  steelBar: {fileID: 1027214441728738, guid: 28d6db32a2fd44d4287ad3fcb160e138, type: 2}
 --- !u!1 &779855893
 GameObject:
   m_ObjectHideFlags: 0
