@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuickMove : MonoBehaviour {
 
 	public float speed;
+	public int points;
 	// Use this for initialization
 	void Start () {
 		

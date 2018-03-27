@@ -8,12 +8,16 @@ public class PlayerController : MonoBehaviour {
 	public SpriteRenderer playerSprite;
 	public Animator playerAnimator;
 
+	public LevelController levelMan;
+
 	public SpriteRenderer spriteRen;
 	public Sprite late;
 	public Sprite perfect;
 	public Sprite early;
 	public string state;
     public bool isJumping;
+	public bool canJump;
+	public int pointsToAdd;
     AudioClip earlySound;
 	AudioClip perfectSound;
 	AudioClip lateSound;
@@ -27,8 +31,10 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		state = "null";
+		state = "late";
         isJumping = false;
+		canJump = true;
+		pointsToAdd = 0;
 
 		earlySound = (AudioClip)Resources.Load("sounds/EarlySound");
 		perfectSound = (AudioClip)Resources.Load("sounds/PerfectSound");
@@ -47,11 +53,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
             isJumping = true;
-			Jump ();
+			if(canJump)
+				Jump ();
 		}
 	}
 
 	public void Jump(){
+		canJump = false;
 		switch (state) {
 		case "null":
 			break;
@@ -63,9 +71,12 @@ public class PlayerController : MonoBehaviour {
 			break;
 		case "perfect":
 			audioSrc.PlayOneShot (perfectSound);
-                playerSprite.sprite = playerWin;
-                playerAnimator.runtimeAnimatorController = playerWinAnim;
-                StartCoroutine(JumpMove());
+			playerSprite.sprite = playerWin;
+			playerAnimator.runtimeAnimatorController = playerWinAnim;
+			StartCoroutine (JumpMove ());
+			if (pointsToAdd > 0) {
+				levelMan.GainPoints (pointsToAdd);
+			}
 			spriteRen.sprite = perfect;
 			break;
 		case "early":
@@ -81,6 +92,9 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator ShowState(){
 		yield return new WaitForSeconds (0.8f);
         isJumping = false;
+		canJump = true;
+		state = "late";
+		pointsToAdd = 0;
 		playerSprite.sprite = playerWalk;
 		playerAnimator.runtimeAnimatorController = playerWalkAnim;
 		spriteRen.sprite = null;

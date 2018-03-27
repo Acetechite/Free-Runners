@@ -8,6 +8,7 @@ public class ArrowController : MonoBehaviour {
 
 	public GameObject playGame;
 	public GameObject settings;
+	public GameObject levelSelect;
 	GameObject[] buttonArray;
 	public AudioSource audioSrc;
 
@@ -27,10 +28,12 @@ public class ArrowController : MonoBehaviour {
 		arrayPosition = 0;
 		changePos = false;
         isWaiting = false;
-		buttonArray = new GameObject[] { playGame, settings };
+		buttonArray = new GameObject[] { playGame,levelSelect, settings };
         sceneTemp = GameObject.FindGameObjectWithTag("SceneManager");
         sceneCtrl = sceneTemp.GetComponent("SceneController") as SceneController;
         arrowRender = gameObject.GetComponent<Image>();
+
+		transform.position = new Vector2 (transform.position.x, buttonArray [0].transform.position.y);
 
         //Sounds
         menuMove = (AudioClip)Resources.Load("sounds/MenuMove");
@@ -80,7 +83,7 @@ public class ArrowController : MonoBehaviour {
         isWaiting = true;
         yield return new WaitForSeconds(2);
         isWaiting = false;
-        sceneCtrl.SceneSwitch(buttonArray[0].name);
+        sceneCtrl.SceneSwitch(buttonArray[arrayPosition].name);
     }
 
     IEnumerator Flicker()

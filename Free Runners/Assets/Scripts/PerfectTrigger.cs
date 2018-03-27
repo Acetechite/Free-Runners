@@ -13,6 +13,7 @@ public class PerfectTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
+		col.gameObject.GetComponent<PlayerController> ().pointsToAdd = gameObject.GetComponentInParent<QuickMove> ().points;
 		col.gameObject.GetComponent<PlayerController> ().state = "perfect";
 	}
 }

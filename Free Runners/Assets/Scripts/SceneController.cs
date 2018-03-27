@@ -18,10 +18,12 @@ public class SceneController : MonoBehaviour {
 
     public void SceneSwitch(string sceneName)
     {
-        if(sceneName == "PlayGame")
-        {
-            SceneManager.LoadScene("PlayScene", LoadSceneMode.Single);
-        }
+		if (sceneName == "PlayGame") {
+			SceneManager.LoadScene ("PlayScene", LoadSceneMode.Single);
+		} 
+		else if (sceneName == "LevelSelect") {
+			
+		}
         else if(sceneName == "Settings")
         {
 
