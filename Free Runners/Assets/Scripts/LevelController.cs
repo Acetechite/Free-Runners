@@ -14,23 +14,29 @@ public class LevelController : MonoBehaviour {
 
     public GameObject[] prefabPaths;
     public GameObject[] levelObj;
+
     public GameObject nullObj;
     public GameObject hurdle;
     public GameObject pylon;
 	public GameObject steelBar;
+    public GameObject flag;
 
 	GameObject item;
 
 	// Use this for initialization
 	void Start () {
-        tempCSV = "0,1,1,2,3,2,3";
+
+
+
+        tempCSV = PlayerPrefs.GetString("ActiveLevel");
+        Debug.Log(tempCSV);
         string[] tempCSVSplit = tempCSV.Split(',');
 
         levelObj = new GameObject[tempCSVSplit.Length];
 
         startPos = new Vector3(0.71f, -0.305f, 0f);
 
-		prefabPaths = new GameObject[] { nullObj, hurdle, pylon, steelBar };
+		prefabPaths = new GameObject[] { nullObj, hurdle, pylon, steelBar, flag };
         
         int count = 0;
         foreach(string s in tempCSVSplit)
