@@ -14,6 +14,6 @@ public class QuickMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(PlayerPrefs.GetInt("Pause") == 0)
-		    transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
+		    transform.position = new Vector3 (transform.position.x - 1f*Time.deltaTime, transform.position.y, transform.position.z);
 	}
 }

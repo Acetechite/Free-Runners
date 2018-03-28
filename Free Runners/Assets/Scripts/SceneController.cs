@@ -38,9 +38,9 @@ public class SceneController : MonoBehaviour {
         {
             SceneManager.LoadScene("LevelSelectScene", LoadSceneMode.Single);
         }
-        else if (sceneName == "Settings")
+        else if (sceneName == "Quit")
         {
-
+            Application.Quit();
         }
         else if (sceneName == "Back")
         {
