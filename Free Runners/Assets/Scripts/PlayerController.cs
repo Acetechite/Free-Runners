@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -28,9 +29,12 @@ public class PlayerController : MonoBehaviour {
 	RuntimeAnimatorController playerMissAnim;
     RuntimeAnimatorController playerWinAnim;
 
+    public GameObject pauseMenu;
+
 
 	// Use this for initialization
 	void Start () {
+        pauseMenu.SetActive(false);
 		state = "late";
         isJumping = false;
 		canJump = true;
@@ -56,6 +60,12 @@ public class PlayerController : MonoBehaviour {
 			if(canJump)
 				Jump ();
 		}
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+        }
 	}
 
 	public void Jump(){

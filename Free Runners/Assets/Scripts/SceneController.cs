@@ -54,9 +54,21 @@ public class SceneController : MonoBehaviour {
             PlayerPrefs.SetString("ActiveLevel", constAhead);
             SceneManager.LoadScene("PlayScene", LoadSceneMode.Single);
         }
-        else if (sceneName == "HurdleHell") {
+        else if (sceneName == "HurdleHell")
+        {
             PlayerPrefs.SetString("ActiveLevel", hurdleHell);
             SceneManager.LoadScene("PlayScene", LoadSceneMode.Single);
+        }
+        else if (sceneName == "Resume")
+        {
+
+        }
+        else if (sceneName == "Restart")
+        {
+            SceneManager.LoadScene("PlayScene", LoadSceneMode.Single);
+        }
+        else if (sceneName == "StartMenu") {
+            SceneManager.LoadScene("Main", LoadSceneMode.Single);
         }
     }
 }

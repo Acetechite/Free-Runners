@@ -13,6 +13,7 @@ public class QuickMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
+        if(Time.timeScale != 0)
+		    transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
 	}
 }
