@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0;
+            PlayerPrefs.SetInt("Pause",1);
             pauseMenu.SetActive(true);
         }
 	}

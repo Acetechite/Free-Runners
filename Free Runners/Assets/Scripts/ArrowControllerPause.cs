@@ -77,14 +77,16 @@ public class ArrowControllerPause : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Time.timeScale = 1;
+            
             audioSrc.PlayOneShot(menuSelect);
             if (buttonArray[arrayPosition].name != "Resume")
             {
-                sceneCtrl.SceneSwitch(buttonArray[arrayPosition].name);
+                StartCoroutine(Flicker());
+                StartCoroutine(SelectWait());
             }
             else
             {
+                PlayerPrefs.SetInt("Pause", 0);
                 pauseMenu.SetActive(false);
             }
 
@@ -99,7 +101,8 @@ public class ArrowControllerPause : MonoBehaviour {
         isWaiting = true;
         yield return new WaitForSeconds(2);
         isWaiting = false;
-        
+        PlayerPrefs.SetInt("Pause", 0);
+        sceneCtrl.SceneSwitch(buttonArray[arrayPosition].name);
     }
 
     IEnumerator Flicker()
